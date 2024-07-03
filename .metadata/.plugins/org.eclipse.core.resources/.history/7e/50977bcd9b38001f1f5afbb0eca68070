@@ -1,0 +1,32 @@
+package com.learnit360.testcases;
+
+import org.testng.annotations.Test;
+
+import com.learnit360.pages.BaseTest;
+import com.learnit360.pages.DashboardPage;
+import com.learnit360.pages.LoginPage;
+import com.learnit360.pages.PaymentPage;
+import com.learnit360.utilities.ReadExcelFile;
+
+public class PaymentGatewayTest extends BaseTest {
+	
+	String fileName=System.getProperty("user.dir")+"\\TestData\\TestPortalData.xlsx";
+
+	@Test
+	public void paymentcheckingTest() {
+		String username = "Demo12";
+		String password = "Test123456$";
+		
+		LoginPage lp = new LoginPage(driver);
+		lp.loginPortal(username, password);
+		
+		DashboardPage dp = new DashboardPage(driver);
+		dp.subscribeToCourse();
+		
+		PaymentPage pp = new PaymentPage(driver);
+		String cardNumber = ReadExcelFile.getCellValue(fileName, "cardInfo", 0, 0);
+		String cardExpDate = ReadExcelFile.getCellValue(fileName, "cardInfo", 0, 1);
+		String cardCVC = ReadExcelFile.getCellValue(fileName, "cardInfo", 0, 2);
+		pp.paymentOption(cardNumber, cardExpDate, cardCVC);
+	}
+}

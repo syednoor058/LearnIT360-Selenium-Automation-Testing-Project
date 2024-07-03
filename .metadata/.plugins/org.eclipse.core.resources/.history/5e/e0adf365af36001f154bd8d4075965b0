@@ -1,0 +1,21 @@
+package com.learnit360.testcases;
+
+import org.testng.annotations.Test;
+
+import com.learnit360.pages.BaseTest;
+import com.learnit360.pages.LoginPage;
+import com.learnit360.pages.SearchCourse;
+
+public class searchTest extends BaseTest {
+
+	@Test
+	public void searchCourseTest() {
+		String username = "Demo12";
+		String password = "Test123456$";
+		LoginPage lp = new LoginPage(driver);
+		lp.loginPortal(username, password);
+		
+		SearchCourse sc = new SearchCourse(driver);
+		sc.searchForCourse("Html For Beginners");
+	}
+}

@@ -1,0 +1,21 @@
+package com.learnit360.testcases;
+
+import com.learnit360.pages.BaseTest;
+import com.learnit360.pages.DashboardPage;
+import com.learnit360.pages.LoginPage;
+
+public class DashboardTest extends BaseTest {
+
+	@Test
+	public void dashboardToPaymentTest() {
+		String username = "Demo12";
+		String password = "Test123456$";
+		String courseName = "Html For Beginners";
+		
+		LoginPage lp = new LoginPage(driver);
+		lp.loginPortal(username, password);
+		
+		DashboardPage dp = new DashboardPage(driver);
+		dp.dashboardToPayment();
+	}
+}
